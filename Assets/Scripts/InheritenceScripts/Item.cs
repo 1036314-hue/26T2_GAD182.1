@@ -3,25 +3,26 @@ using UnityEngine.InputSystem;
 
 public class Item : MonoBehaviour
 {
+    [SerializeField]
     protected string itemName;
 
     [SerializeField] 
     protected Sprite sprite;
-
+    [SerializeField]
     protected string itemDescription;
-
+    [SerializeField]
     protected int itemAmount;
-
+    [SerializeField]
     protected double saleValue;
 
-    private Inventory inventory;
+    public Inventory inventory;
 
     private bool canPickUp;
 
     private void Start()
     {
         //Finding the inventory script
-        inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
+        // = GameObject.Find("Inventory").GetComponent<Inventory>();
     }
 
     //Set the item to be pickupable inside of range
@@ -34,8 +35,8 @@ public class Item : MonoBehaviour
     {
         if (canPickUp && Keyboard.current.eKey.wasPressedThisFrame)
         {
+            canPickUp = false;
             inventory.AddItem(itemName, sprite, itemDescription, itemAmount, saleValue);
-            canPickUp=false;
             Destroy(gameObject);
         }
     }

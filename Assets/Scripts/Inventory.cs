@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 public class Inventory : MonoBehaviour
 {
@@ -11,8 +12,6 @@ public class Inventory : MonoBehaviour
     public GameObject inventorySlot;
 
     public GameObject inventoryItemSection;
-
-    private bool itemAdded;
 
     public List<ItemSpace> itemSpace = new List<ItemSpace>();
     
@@ -33,6 +32,7 @@ public class Inventory : MonoBehaviour
     public void AddItem(string itemName, Sprite sprite, string itemDescription, int itemAmount, double saleValue)
     {
         Debug.Log(itemName + " " + sprite + " " + itemDescription + " " + itemAmount + " " + saleValue);
+        bool itemAdded = false;
 
         //Checking if we already have the specific Item in inventory
         for (int i = 0; i < itemSpace.Count; i++)
@@ -47,9 +47,9 @@ public class Inventory : MonoBehaviour
         //If no specific item already create new inventory slot with item assigned
         if (!itemAdded)
         {
-            Instantiate(inventorySlot, inventoryItemSection.transform);
-            itemSpace.Add(inventorySlot.GetComponent<ItemSpace>());
-            itemSpace[itemSpace.Count].AddItem(itemName, sprite, itemDescription, itemAmount, saleValue);
+            GameObject slotClone = Instantiate(inventorySlot, inventoryItemSection.transform);
+            itemSpace.Add(slotClone.GetComponent<ItemSpace>());
+            itemSpace[itemSpace.Count - 1].AddItem(itemName, sprite, itemDescription, itemAmount, saleValue);
         }
 
 

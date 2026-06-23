@@ -10,8 +10,10 @@ public class ItemSpace : MonoBehaviour
     public int itemCount;
     public bool containsItem;
 
+    [SerializeField]
     private TextMeshProUGUI itemCounter;
 
+    [SerializeField]
     private Image itemImage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
