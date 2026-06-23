@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 public class ItemSpace : MonoBehaviour
 {
     public string itemName;
@@ -15,10 +16,20 @@ public class ItemSpace : MonoBehaviour
 
     [SerializeField]
     private Image itemImage;
+
+    [SerializeField]
+    private Image itemInspectorImage;
+
+    [SerializeField]
+    private TextMeshProUGUI itemInspectorDescription;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        GameObject itemInspectorImageObject = GameObject.Find("ItemInspectorImage");
+        itemInspectorImage = itemInspectorImageObject.GetComponent<Image>();
+
+        GameObject itemInspectorDescriptionObject = GameObject.Find("ItemInspectorDescription");
+        itemInspectorDescription = itemInspectorDescriptionObject.GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -26,6 +37,8 @@ public class ItemSpace : MonoBehaviour
     {
         
     }
+
+    
 
     public void AddItem(string itemName, Sprite sprite, string itemDescription, int itemAmount, double saleValue)
     {
@@ -46,5 +59,18 @@ public class ItemSpace : MonoBehaviour
 
     public void RemoveItem()
     {
+        itemCount += -1;
+        itemCounter.text = itemCount.ToString();
+        if (itemCount <= 0)
+        {
+            //FIND A WAY TO REMOVE THIS INSTANCE OF ITEMSPACE SCRIPT FROM ITEMSPACE IN INVENTORY
+            Destroy(gameObject);
+        }
+    }
+
+    public void DisplayInInspector()
+    {
+        itemInspectorImage.sprite = itemSprite;
+        itemInspectorDescription.text = itemDescription.ToString();
     }
 }
