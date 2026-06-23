@@ -94,7 +94,7 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   saleValue: 0
   itemCount: 0
-  containsItem: 0
+  containsItem: 1
   itemCounter: {fileID: 3703041894087942536}
   itemImage: {fileID: 3377599947661146867}
 --- !u!1 &2387805162861775300
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 864ef9771154c254cb4902024fec39e3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 36
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
