@@ -56,5 +56,16 @@ public class Inventory : MonoBehaviour
             itemSpace[itemSpace.Count - 1].AddItem(itemName, sprite, itemDescription, itemAmount, saleValue);
         }
     }
-    
+    //Checking to remove unused ItemSpace from the list
+    public void RemoveItemSpace(string itemName)
+    {
+        for (int i = 0; i < itemSpace.Count; i++)
+        {
+            if (itemSpace[i].itemName == itemName)
+            {
+                itemSpace.Remove(itemSpace[i]);
+                return;
+            }
+        }
+    }
 }

@@ -22,6 +22,8 @@ public class ItemSpace : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI itemInspectorDescription;
+
+    private Inventory inventoryScript;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,6 +32,9 @@ public class ItemSpace : MonoBehaviour
 
         GameObject itemInspectorDescriptionObject = GameObject.Find("ItemInspectorDescription");
         itemInspectorDescription = itemInspectorDescriptionObject.GetComponent<TextMeshProUGUI>();
+
+        GameObject inventoryGameObject = GameObject.Find("Inventory");
+        inventoryScript = inventoryGameObject.GetComponent<Inventory>();
     }
 
     // Update is called once per frame
@@ -63,7 +68,7 @@ public class ItemSpace : MonoBehaviour
         itemCounter.text = itemCount.ToString();
         if (itemCount <= 0)
         {
-            //FIND A WAY TO REMOVE THIS INSTANCE OF ITEMSPACE SCRIPT FROM ITEMSPACE IN INVENTORY
+            inventoryScript.RemoveItemSpace(itemName);
             Destroy(gameObject);
         }
     }
