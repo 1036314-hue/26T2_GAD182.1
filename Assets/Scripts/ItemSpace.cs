@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting;
+using UnityEngine.EventSystems;
 public class ItemSpace : MonoBehaviour
 {
     public string itemName;
@@ -23,7 +24,9 @@ public class ItemSpace : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI itemInspectorDescription;
 
-    private Inventory inventoryScript;
+    [SerializeField]private Inventory inventoryScript;
+
+    private Button removeButton;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -35,14 +38,12 @@ public class ItemSpace : MonoBehaviour
 
         GameObject inventoryGameObject = GameObject.Find("Inventory");
         inventoryScript = inventoryGameObject.GetComponent<Inventory>();
+
+        GameObject removeButtonGameObject = GameObject.Find("Remove Item");
+        removeButton = removeButtonGameObject.GetComponent<Button>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     
 
     public void AddItem(string itemName, Sprite sprite, string itemDescription, int itemAmount, double saleValue)
@@ -64,11 +65,10 @@ public class ItemSpace : MonoBehaviour
 
     public void RemoveItem()
     {
-        itemCount += -1;
-        itemCounter.text = itemCount.ToString();
+            itemCount -= 1;
         if (itemCount <= 0)
         {
-            inventoryScript.RemoveItemSpace(itemName);
+            inventoryScript.RemoveItemSpace(inventoryScript.GetItemSpaceNumber(itemName));
             Destroy(gameObject);
         }
     }
@@ -77,5 +77,10 @@ public class ItemSpace : MonoBehaviour
     {
         itemInspectorImage.sprite = itemSprite;
         itemInspectorDescription.text = itemDescription.ToString();
+        removeButton.onClick.RemoveAllListeners();
+        removeButton.onClick.AddListener(RemoveItem);
+
     }
+
+ 
 }

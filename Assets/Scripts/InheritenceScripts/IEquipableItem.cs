@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface EquipableItem
+public interface IEquipableItem
 {
     void EquipItem();
 }
