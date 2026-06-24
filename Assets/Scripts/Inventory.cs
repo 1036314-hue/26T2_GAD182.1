@@ -36,7 +36,8 @@ public class Inventory : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
-
+    //AddItem checking if item already exists in inventory, creating if not and adding ItemSpace script to list, adding if does.
+    //Variables sent to ItemSpace script to save the values there 
     public void AddItem(string itemName, Sprite sprite, string itemDescription, int itemAmount, double saleValue)
     {
         Debug.Log(itemName + " " + sprite + " " + itemDescription + " " + itemAmount + " " + saleValue);
@@ -45,6 +46,7 @@ public class Inventory : MonoBehaviour
         //Checking if we already have the specific Item in inventory
         for (int i = 0; i < itemSpace.Count; i++)
         {
+            //Checking if item matches an item already in one of the scripts in the list
             if (itemSpace[i].containsItem && itemName == itemSpace[i].itemName)
             {
                 itemSpace[i].AddItem(itemName, sprite, itemDescription, itemAmount, saleValue);
@@ -55,13 +57,14 @@ public class Inventory : MonoBehaviour
         //If no specific item already create new inventory slot with item assigned
         if (!itemAdded)
         {
+            //Spawning clone as a child of inventoryItemSection
             GameObject slotClone = Instantiate(inventorySlot, inventoryItemSection.transform);
             itemSpace.Add(slotClone.GetComponent<ItemSpace>());
             itemSpace[itemSpace.Count - 1].AddItem(itemName, sprite, itemDescription, itemAmount, saleValue);
         }
     }
-    //Checking to remove unused ItemSpace from the list
     
+    //Checking Which script matches the input itemName
     public int GetItemSpaceNumber(string itemName)
     {
         for (int i = 0; i < itemSpace.Count; i++)
@@ -74,7 +77,7 @@ public class Inventory : MonoBehaviour
         return -1;
     }
 
-    
+    //Remove ItemSpace from the list
     public void RemoveItemSpace(int GetItemSpaceNumber)
     {
         itemSpace.Remove(itemSpace[GetItemSpaceNumber]);

@@ -29,9 +29,10 @@ public class ItemSpace : MonoBehaviour
 
     [SerializeField]
     private Button removeButton;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
+        //Getting references for scripts that the prefab requires reference for by checking objects in the scene
         GameObject itemInspectorImageObject = GameObject.Find("ItemInspectorImage");
         itemInspectorImage = itemInspectorImageObject.GetComponent<Image>();
 
@@ -47,7 +48,7 @@ public class ItemSpace : MonoBehaviour
 
     
     
-
+    //Values recieved from AddItem Inventory sent to this script through here
     public void AddItem(string itemName, Sprite sprite, string itemDescription, int itemAmount, double saleValue)
     {
         //this used to differenciate variables being recieved from variables this script has
@@ -64,7 +65,8 @@ public class ItemSpace : MonoBehaviour
         itemCounter.text = itemCount.ToString();
         itemImage.sprite = itemSprite; 
     }
-
+    //Reduces itemCount by 1 to be used in other functions e.g. use, sell, discard
+    //If item count hits 0 or less removes reference from inventory script list and destroy self
     public void RemoveItem()
     {
             itemCount -= 1;
@@ -74,21 +76,22 @@ public class ItemSpace : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    //Only has destroy functionality as Effect would be gained from inheritance in an item script
     public void UseItem()
     {
         //Effect Happens here then
 
         RemoveItem();
     }
-
+    //Only has destroy functionality as Effect would be gained from inheritance in an item script
     public void SellItem()
     {
         //Effect Happens here then
 
         RemoveItem();
     }
-
+    //Sets inspector visuals to display item image and description text
+    //Provides remove button ability to remove items from this script and removes other listeners prior to prevent other scripts being effected
     public void DisplayInInspector()
     {
         itemInspectorImage.sprite = itemSprite;

@@ -30,7 +30,8 @@ public class Item : MonoBehaviour
     {
         canPickUp = true;
     }
-
+    //Checks if Player is within range of the object and pressed e to trigger PickUp()
+    //UseItem here to demo inheritence
     private void Update()
     {
         if (canPickUp && Keyboard.current.eKey.wasPressedThisFrame)
@@ -48,11 +49,14 @@ public class Item : MonoBehaviour
     {
         canPickUp = false;
     }
-
+    //Default value for UseItem (Changed in inheritance)
     protected virtual void UseItem()
     {
         Debug.Log("Item Used");
     }
+    //Reset canPickUp to false to prevent infinite item creation
+    //Send variables to AddItem in the inventory script 
+    //Remove object from scene
     void PickUp()
     {
         canPickUp = false;
