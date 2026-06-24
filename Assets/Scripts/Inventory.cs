@@ -10,11 +10,14 @@ public class Inventory : MonoBehaviour
     [SerializeField]  
     private GameObject inventoryMenu;
 
-    public GameObject inventorySlot;
+    [SerializeField]
+    private GameObject inventorySlot;
 
-    public GameObject inventoryItemSection;
+    [SerializeField]
+    private GameObject inventoryItemSection;
 
-    public List<ItemSpace> itemSpace = new List<ItemSpace>();
+    [SerializeField]
+    private List<ItemSpace> itemSpace = new List<ItemSpace>();
     
     void Update()
     {

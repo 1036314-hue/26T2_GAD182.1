@@ -24,8 +24,10 @@ public class ItemSpace : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI itemInspectorDescription;
 
-    [SerializeField]private Inventory inventoryScript;
+    [SerializeField]
+    private Inventory inventoryScript;
 
+    [SerializeField]
     private Button removeButton;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -71,6 +73,20 @@ public class ItemSpace : MonoBehaviour
             inventoryScript.RemoveItemSpace(inventoryScript.GetItemSpaceNumber(itemName));
             Destroy(gameObject);
         }
+    }
+
+    public void UseItem()
+    {
+        //Effect Happens here then
+
+        RemoveItem();
+    }
+
+    public void SellItem()
+    {
+        //Effect Happens here then
+
+        RemoveItem();
     }
 
     public void DisplayInInspector()
