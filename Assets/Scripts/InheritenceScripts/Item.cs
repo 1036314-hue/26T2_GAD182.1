@@ -35,9 +35,11 @@ public class Item : MonoBehaviour
     {
         if (canPickUp && Keyboard.current.eKey.wasPressedThisFrame)
         {
-            canPickUp = false;
-            inventory.AddItem(itemName, sprite, itemDescription, itemAmount, saleValue);
-            Destroy(gameObject);
+            PickUp();
+        }
+        if (Keyboard.current.qKey.wasPressedThisFrame)
+        {
+            UseItem();
         }
     }
 
@@ -47,25 +49,14 @@ public class Item : MonoBehaviour
         canPickUp = false;
     }
 
+    protected virtual void UseItem()
+    {
+        Debug.Log("Item Used");
+    }
     void PickUp()
     {
-
+        canPickUp = false;
+        inventory.AddItem(itemName, sprite, itemDescription, itemAmount, saleValue);
+        Destroy(gameObject);
     }
-
-    void UseItem()
-    {
-
-    }
-
-    void DiscardItem()
-    {
-
-    }
-
-    void SellItem()
-    {
-
-    }
-
-
 }
