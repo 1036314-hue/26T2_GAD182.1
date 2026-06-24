@@ -7,7 +7,8 @@ using System.Runtime.CompilerServices;
 
 public class Inventory : MonoBehaviour
 {
-    public GameObject inventoryMenu;
+    [SerializeField]  
+    private GameObject inventoryMenu;
 
     public GameObject inventorySlot;
 
@@ -57,15 +58,22 @@ public class Inventory : MonoBehaviour
         }
     }
     //Checking to remove unused ItemSpace from the list
-    public void RemoveItemSpace(string itemName)
+    
+    public int GetItemSpaceNumber(string itemName)
     {
         for (int i = 0; i < itemSpace.Count; i++)
         {
-            if (itemSpace[i].itemName == itemName)
+            if(itemSpace[i].itemName == itemName)
             {
-                itemSpace.Remove(itemSpace[i]);
-                return;
+                return i;
             }
         }
+        return -1;
     }
+
+    
+    public void RemoveItemSpace(int GetItemSpaceNumber)
+    {
+        itemSpace.Remove(itemSpace[GetItemSpaceNumber]);
+    }   
 }
